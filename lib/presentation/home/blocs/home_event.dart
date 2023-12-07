@@ -5,5 +5,11 @@ abstract class HomeEvent {}
 
 class OnAddWord extends HomeEvent {
   final String word;
-  OnAddWord(this.word);
+  final BuildContext context;
+  final Function onCallback;
+  OnAddWord(this.word, this.context, this.onCallback);
 }
+
+class OnInitTimes extends HomeEvent {}
+
+class OnDecreaseTime extends HomeEvent {}

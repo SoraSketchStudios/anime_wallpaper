@@ -39,10 +39,19 @@ dependencies:
   get_it: ^7.6.4
   injectable: ^2.3.2
   melos: ^3.3.0
-  google_sign_in: ^6.1.6
-  firebase_core: ^2.24.0
-  firebase_auth: ^4.15.0
-  firebase_storage: ^11.5.3
+
+
+  core:
+    path: packages/core
+  domain:
+    path: packages/domain
+  data:
+    path: packages/data
+  widget:
+    path: packages/widget
+  theme:
+    path: packages/theme
+
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +77,14 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter/static/Inter-Regular.ttf
+          style: italic
+    - family: Kalam
+      fonts:
+        - asset: assets/fonts/Kalam/Kalam-Regular.ttf
 
   # To add assets to your application, add an assets section, like this:
   # assets:

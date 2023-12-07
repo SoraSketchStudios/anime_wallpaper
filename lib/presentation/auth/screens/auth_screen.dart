@@ -1,7 +1,7 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:voca_memo/data/firebase_services/auth_service.dart';
-import 'package:voca_memo/routes/route_names.dart';
-import 'package:voca_memo/widgets/button_widgets/button_widget.dart';
+import 'package:voca_memo/presentation/auth/blocs/auth_bloc.dart';
+import 'package:widget/widget.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({super.key});
@@ -14,8 +14,7 @@ class AuthScreen extends StatelessWidget {
           child: const Text("Sign in with google"),
           onPressed: () async {
             // print("auth");
-            await AuthService.loginWithGoogle();
-            Navigator.pushNamed(context, RouteName.homeScreen);
+            getIt<AuthBloc>().add(OnSignInWithGoogle(context));
           },
         ),
       ),

@@ -1,9 +1,8 @@
-import 'package:get_it/get_it.dart';
-import 'package:injectable/injectable.dart';
+import 'package:core/core.dart';
+import 'package:data/data.dart';
+import 'package:domain/di/di.dart';
 
 import 'di.config.dart';
-
-final getIt = GetIt.instance;
 
 @InjectableInit(
   initializerName: 'init', // default
@@ -11,3 +10,10 @@ final getIt = GetIt.instance;
   asExtension: true, // default
 )
 void configureDependencies() => getIt.init();
+
+void configureDependenciesApp() {
+  configureDependenciesCore();
+  configureDependenciesDomain();
+  configureDependenciesData();
+  configureDependencies();
+}

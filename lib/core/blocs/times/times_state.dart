@@ -1,6 +1,12 @@
 part of 'times_bloc.dart';
 
 @immutable
-abstract class TimesState {}
+abstract class TimesState {
+  final int times;
 
-class TimesInitial extends TimesState {}
+  const TimesState(this.times);
+}
+
+class TimesInitial extends TimesState {
+  const TimesInitial(super.times);
+}
