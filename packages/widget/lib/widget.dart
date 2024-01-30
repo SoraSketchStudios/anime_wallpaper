@@ -7,4 +7,3 @@ export 'space/space_width_widgets.dart';
 export 'package:auto_size_text/auto_size_text.dart';
 export 'package:gradient_borders/gradient_borders.dart';
 export 'package:flutter_easyloading/flutter_easyloading.dart';
-export 'tinder_card/tinder_card_widget.dart';
