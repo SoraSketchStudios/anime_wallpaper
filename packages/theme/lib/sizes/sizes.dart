@@ -7,4 +7,5 @@ class AppSize {
   static double paddingXL = 32;
 
   static double buttonHeight = 46;
+  static double radius = 12;
 }

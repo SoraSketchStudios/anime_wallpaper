@@ -6,7 +6,7 @@ import 'space_height_widgets.dart';
 class AppSpaceWidthWidget extends StatelessWidget {
   final AppTypeSpace appTypeSpace;
 
-  const AppSpaceWidthWidget({Key? key, required this.appTypeSpace})
+  const AppSpaceWidthWidget({Key? key, this.appTypeSpace = AppTypeSpace.normal})
       : super(key: key);
 
   factory AppSpaceWidthWidget.S() {

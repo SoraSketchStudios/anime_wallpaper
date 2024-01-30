@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:theme/theme.dart';
 
 class AppTextFieldWidget extends StatefulWidget {
   final TextEditingController? controller;
   final String? hintText;
   final FocusNode? focusNode;
+  final TextStyle? style;
+  final Function(String)? onChange;
   const AppTextFieldWidget(
-      {super.key, this.controller, this.focusNode, this.hintText});
+      {super.key,
+      this.controller,
+      this.focusNode,
+      this.hintText,
+      this.style,
+      this.onChange});
 
   @override
   State<AppTextFieldWidget> createState() => AppTextFieldWidgetState();
@@ -14,6 +22,7 @@ class AppTextFieldWidget extends StatefulWidget {
 class AppTextFieldWidgetState extends State<AppTextFieldWidget> {
   late final TextEditingController keyController;
   late final FocusNode node;
+
   TextEditingController get controller => keyController;
   FocusNode get focusNode => node;
 
@@ -26,30 +35,25 @@ class AppTextFieldWidgetState extends State<AppTextFieldWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TextFormField(
-          textAlign: TextAlign.center,
-          scrollPadding: EdgeInsets.zero,
-          focusNode: node,
-          maxLines: 1,
-          controller: keyController,
-          style: Theme.of(context)
-              .textTheme
-              .titleLarge
-              ?.copyWith(fontWeight: FontWeight.bold, letterSpacing: 3),
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            contentPadding: EdgeInsets.zero,
-            hintText: widget.hintText ?? "Enter a your new word",
-          ),
+    return Container(
+      height: AppSize.buttonHeight,
+      decoration: BoxDecoration(
+          color: context.colorScheme.surfaceVariant,
+          borderRadius: AppStyle.borderRadius),
+      padding: EdgeInsets.symmetric(horizontal: AppSize.padding),
+      child: TextFormField(
+        scrollPadding: EdgeInsets.zero,
+        focusNode: node,
+        onChanged: widget.onChange,
+        maxLines: 1,
+        controller: keyController,
+        style: widget.style,
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          contentPadding: EdgeInsets.zero,
+          hintText: widget.hintText ?? "Enter a your new word",
         ),
-        Container(
-          width: MediaQuery.of(context).size.width,
-          height: 2,
-          color: Theme.of(context).colorScheme.primary,
-        )
-      ],
+      ),
     );
   }
 }

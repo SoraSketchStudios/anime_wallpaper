@@ -1,19 +1,21 @@
+import 'dart:io';
+
 import 'package:core/core.dart';
-import 'package:domain/domain.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:theme/theme.dart';
-import 'package:voca_memo/core/blocs/times/times_bloc.dart';
-import 'package:voca_memo/routes/route_manager.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:voca_memo/routes/route_names.dart';
 import 'package:widget/widget.dart';
 
+import 'core/blocs/times/times_bloc.dart';
 import 'core/di/di.dart';
 import 'firebase_options.dart';
+import 'routes/route_manager.dart';
+import 'routes/route_names.dart';
 
 Future<void> main() async {
+  HttpOverrides.global = MyHttpOverrides();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -34,7 +36,7 @@ class Main extends StatelessWidget {
       child: BlocBuilder<TimesBloc, TimesState>(
         builder: (context, state) {
           return MaterialApp(
-            themeMode: ThemeMode.dark,
+            themeMode: ThemeMode.light,
             theme: appTheme,
             darkTheme: appThemeDark,
             onGenerateRoute: RouteManager.generateRoute,
@@ -45,5 +47,18 @@ class Main extends StatelessWidget {
         },
       ),
     );
+  }
+}
+
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          ((X509Certificate cert, String host, int port) {
+        final isValidHost =
+            ["gpt.getdata.one"].contains(host); // <-- allow only hosts in array
+        return isValidHost;
+      });
   }
 }
