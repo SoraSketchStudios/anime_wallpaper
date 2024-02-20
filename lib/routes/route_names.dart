@@ -1,11 +1,7 @@
 class RouteName {
-  static const String homeScreen = "/homeScreen";
-  static const String authScreen = "/authScreen";
-  static const String userScreen = "/userScreen";
-  static const String wordsScreen = "/wordsScreen";
-  static const String makeMemory = "/makeMemory";
-  static const String wordsRandomCardWordsScreen =
-      "/wordsRandomCardWordsScreen";
-  static const String wordDetailScreen = "/WordDetailScreen";
-  static const String wordDetailUsageScreen = "/wordDetailUsageScreen";
+  static const String splashScreen = "/splashScreen";
+  static const String mainScreen = "/homeScreen";
+  static const String imageCharacterScreen = "/imageCharacterScreen";
+  static const String imageCharacterPhotoView = "/imageCharacterPhotoView";
+  static const String searchScreen = "/searchScreen";
 }

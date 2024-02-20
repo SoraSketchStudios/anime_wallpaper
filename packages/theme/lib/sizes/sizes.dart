@@ -8,4 +8,7 @@ class AppSize {
 
   static double buttonHeight = 46;
   static double radius = 12;
+
+  /// device
+  static double appbarHeight = 50;
 }
