@@ -1,6 +1,8 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:theme/image_export.dart';
 import 'package:theme/sizes/sizes.dart';
+import 'package:theme/theme.dart';
 
 class ImageCharacterPhotoViewAppbar extends StatelessWidget {
   final List<ImageCharacterModel> imageCharacterModels;
@@ -17,8 +19,10 @@ class ImageCharacterPhotoViewAppbar extends StatelessWidget {
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon: const Icon(
-                Icons.arrow_back,
+              icon: Image.asset(
+                AppPathAsset.iconBack,
+                width: 7.22.w,
+                color: Colors.white,
               ),
             )
           ],

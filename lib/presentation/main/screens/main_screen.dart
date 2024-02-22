@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:frame_project/presentation/categories/screens/categories_screen.dart';
 import 'package:frame_project/presentation/favorite/screens/favorite_screen.dart';
 import 'package:frame_project/presentation/home/screens/home_screen.dart';
+import 'package:frame_project/routes/route_names.dart';
 import '../../setting/screens/setting_screen.dart';
+import '../widgets/bottom_bar.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -16,27 +19,38 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
-          BottomNavigationBarItem(icon: Icon(Icons.heart_broken), label: ""),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: ""),
-        ],
-        currentIndex: currentIndex,
-        onTap: (index) {
-          setState(() {
-            currentIndex = index;
-          });
-        },
-      ),
+      bottomNavigationBar: BottomBarHome(
+          onCallBack: (index) {
+            if (index == 3) {
+              Navigator.pushNamed(context, RouteName.settingScreen);
+            } else if (index == 2) {
+              Navigator.pushNamed(context, RouteName.favoriteScreen);
+            } else {
+              setState(() {
+                currentIndex = index;
+              });
+            }
+          },
+          select: currentIndex),
       body: IndexedStack(
         index: currentIndex,
-        children: const [
-          HomeScreen(),
-          FavoriteScreen(),
-          SettingScreen(),
+        children: [
+          HomeScreen(
+            onViewAll: () {
+              setState(() {
+                currentIndex = 1;
+              });
+            },
+          ),
+          CategoriesScreen(
+            onCallback: () {
+              setState(() {
+                currentIndex = 0;
+              });
+            },
+          ),
+          const FavoriteScreen(),
+          const SettingScreen(),
         ],
       ),
     );

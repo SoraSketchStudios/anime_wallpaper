@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frame_project/presentation/home/blocs/home/home_bloc.dart';
 import 'package:frame_project/routes/route_names.dart';
+import 'package:theme/image_export.dart';
 import 'package:theme/sizes/sizes.dart';
+import 'package:theme/theme.dart';
 import 'package:widget/text_field/text_field_widgets.dart';
 
 class HomeSearchWidget extends StatefulWidget {
@@ -32,23 +34,33 @@ class _HomeSearchWidgetState extends State<HomeSearchWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.pushNamed(context, RouteName.searchScreen);
-      },
-      child: Container(
-        color: Colors.transparent,
-        padding: EdgeInsets.all(AppSize.paddingXS),
-        child: IgnorePointer(
-          child: AppTextFieldWidget(
-            onChange: (string) {
-              _onSearchChanged(string, context);
+    return Row(
+      children: [
+        Expanded(
+          child: GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, RouteName.searchScreen);
             },
-            key: keyText,
-            hintText: "Search for characters",
+            child: IgnorePointer(
+              child: AppTextFieldWidget(
+                onChange: (string) {
+                  _onSearchChanged(string, context);
+                },
+                key: keyText,
+                hintText: "Find Wallpaper by character name..",
+              ),
+            ),
           ),
         ),
-      ),
+        SizedBox(
+          width: 1.4.w,
+        ),
+        SizedBox(
+          width: 7.64.w,
+          height: 7.64.w,
+          child: Image.asset(AppPathAsset.iconNotification),
+        )
+      ],
     );
   }
 }

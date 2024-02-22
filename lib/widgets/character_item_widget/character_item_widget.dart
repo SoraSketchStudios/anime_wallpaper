@@ -3,8 +3,8 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:frame_project/core/blocs/favorite_character/favorite_character_bloc.dart';
 import 'package:frame_project/routes/route_names.dart';
-import 'package:theme/styles/styles.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:theme/theme.dart';
 import 'package:widget/image_builder/image_builder_widget.dart';
 
 class CharacterItemWidget extends StatelessWidget {
@@ -29,13 +29,14 @@ class CharacterItemWidget extends StatelessWidget {
             height: size?.height,
             clipBehavior: Clip.hardEdge,
             decoration: BoxDecoration(
-              borderRadius: AppStyle.borderRadius,
+              borderRadius: BorderRadius.circular(2.8.w),
             ),
             child: AppImageBuilderWidget(
               linkImage: characterModel.linkURL ?? "",
             ),
           ),
           Positioned(
+            bottom: 1.w,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -45,17 +46,27 @@ class CharacterItemWidget extends StatelessWidget {
                       final bool checkFavorite = getIt<FavoriteCharacterBloc>()
                           .favoriteCharacterUseCase
                           .checkFavorite(characterModel.characterId ?? "");
-                      return IconButton(
-                        onPressed: () {
+                      return GestureDetector(
+                        onTap: () {
                           !checkFavorite
                               ? getIt<FavoriteCharacterBloc>()
                                   .add(OnAddFavoriteCharacter(characterModel))
                               : getIt<FavoriteCharacterBloc>().add(OnRemoveFavoriteCharacter(
                                   characterModel.characterId ?? "", context));
                         },
-                        icon: Icon(
-                          Icons.heart_broken,
-                          color: checkFavorite ? Colors.red : null,
+                        child: Container(
+                          padding: EdgeInsets.all(1.67.w),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: const Color(0xff191E31).withOpacity(0.53),
+                          ),
+                          child: SizedBox(
+                            height: 3.47.w,
+                            child: Image.asset(
+                              AppPathAsset.iconHeart,
+                              color: checkFavorite ? Colors.red : null,
+                            ),
+                          ),
                         ),
                       );
                     }),

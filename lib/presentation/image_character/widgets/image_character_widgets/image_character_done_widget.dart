@@ -2,7 +2,7 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:theme/sizes/sizes.dart';
 
-import 'image_character_item_widget.dart';
+import '../../../../widgets/image_show_item_widget/image_show_item_widget.dart';
 
 class ImageCharacterDoneWidget extends StatelessWidget {
   final List<ImageCharacterModel> imageCharacterModels;
@@ -19,7 +19,7 @@ class ImageCharacterDoneWidget extends StatelessWidget {
       children: [
         ...List.generate(
           imageCharacterModels.length,
-          (index) => ImageCharacterItemWidget(
+          (index) => ImageShowItemWidget(
             imageCharacterModels: imageCharacterModels,
             index: index,
           ),

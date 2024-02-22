@@ -4,14 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frame_project/core/blocs/favorite_character/favorite_character_bloc.dart';
 import 'package:frame_project/routes/route_manager.dart';
-import 'package:frame_project/routes/route_names.dart';
-import 'package:frame_project/widgets/character_item_widget/character_item_widget.dart';
 import 'package:theme/sizes/sizes.dart';
-import 'package:widget/image_builder/image_builder_widget.dart';
 
 import '../../../core/blocs/favorite_image/favorite_image_bloc.dart';
-import '../../image_character/screens/image_character_photo_view.dart';
-import '../../image_character/widgets/image_character_widgets/image_character_item_widget.dart';
+import '../../../widgets/image_show_item_widget/image_show_item_widget.dart';
 
 class FavoriteImageWidget extends StatelessWidget {
   const FavoriteImageWidget({super.key});
@@ -23,16 +19,21 @@ class FavoriteImageWidget extends StatelessWidget {
       child: Builder(builder: (context) {
         return BlocBuilder<FavoriteImageBloc, FavoriteImageState>(
           builder: (context, state) {
+            if (state.listFavoriteImage.isEmpty) {
+              return const Center(
+                child: Text("No favorite found"),
+              );
+            }
             return GridView.count(
-              crossAxisCount: 2,
-              childAspectRatio: 0.6,
+              crossAxisCount: 3,
+              childAspectRatio: 0.57,
               padding: EdgeInsets.all(AppSize.paddingS),
               crossAxisSpacing: AppSize.paddingS,
               mainAxisSpacing: AppSize.paddingS,
               children: [
                 ...List.generate(
                     state.listFavoriteImage.length,
-                    (index) => ImageCharacterItemWidget(
+                    (index) => ImageShowItemWidget(
                           imageCharacterModels: [
                             ...state.listFavoriteImage
                                 .map((e) => ImageCharacterModel(linkUrl: e.linkImage))

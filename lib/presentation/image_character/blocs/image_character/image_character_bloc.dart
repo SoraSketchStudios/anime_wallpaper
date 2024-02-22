@@ -44,9 +44,35 @@ class ImageCharacterBloc extends Bloc<ImageCharacterEvent, ImageCharacterState> 
           arguments: event.imageCharacterModels);
     });
 
-    on<OnClickSetBackground>((event, emit) {
+    on<OnClickSetHomeScreen>((event, emit) {
       final progressString =
           Wallpaper.imageDownloadProgress(event.imageCharacterModel.linkUrl ?? "");
+      progressString.listen((data) {
+        EasyLoading.show();
+      }, onDone: () async {
+        await Wallpaper.homeScreen();
+        EasyLoading.dismiss();
+      }, onError: (error) {
+        print("Some Error");
+      });
+    });
+
+    on<OnClickSetLockScreen>((event, emit) {
+      final progressString =
+      Wallpaper.imageDownloadProgress(event.imageCharacterModel.linkUrl ?? "");
+      progressString.listen((data) {
+        EasyLoading.show();
+      }, onDone: () async {
+        await Wallpaper.lockScreen();
+        EasyLoading.dismiss();
+      }, onError: (error) {
+        print("Some Error");
+      });
+    });
+
+    on<OnClickSetBothScreen>((event, emit) {
+      final progressString =
+      Wallpaper.imageDownloadProgress(event.imageCharacterModel.linkUrl ?? "");
       progressString.listen((data) {
         EasyLoading.show();
       }, onDone: () async {

@@ -11,7 +11,7 @@ class HomeDoneWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MasonryGridView.count(
-      crossAxisCount: 2,
+      crossAxisCount: 3,
       padding: EdgeInsets.all(AppSize.paddingS),
       keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       mainAxisSpacing: AppSize.paddingS,

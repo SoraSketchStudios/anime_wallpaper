@@ -1,9 +1,9 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:theme/sizes/sizes.dart';
+import 'package:theme/theme.dart';
 
 import '../../../../../widgets/character_item_widget/character_item_widget.dart';
-
 
 class DiscoverDoneWidget extends StatelessWidget {
   final List<CharacterModel> characterModels;
@@ -13,9 +13,9 @@ class DiscoverDoneWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.count(
       keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-      crossAxisCount: 2,
+      crossAxisCount: 3,
       childAspectRatio: 4 / 7,
-      padding: EdgeInsets.all(AppSize.paddingS),
+      padding: EdgeInsets.only(top: 2.73.w),
       mainAxisSpacing: AppSize.paddingS,
       crossAxisSpacing: AppSize.paddingS,
       children: [

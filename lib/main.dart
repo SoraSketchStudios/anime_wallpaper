@@ -1,4 +1,3 @@
-import 'dart:ffi';
 import 'dart:io';
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
@@ -8,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frame_project/core/blocs/favorite_character/favorite_character_bloc.dart';
 import 'package:theme/theme.dart';
 import 'package:widget/widget.dart';
-
 import 'core/blocs/favorite_image/favorite_image_bloc.dart';
 import 'core/di/di.dart';
 import 'firebase_options.dart';
@@ -41,13 +39,17 @@ class Main extends StatelessWidget {
       value: getIt<FavoriteCharacterBloc>(),
       child: BlocProvider.value(
         value: getIt<FavoriteImageBloc>(),
-        child: MaterialApp(
-          themeMode: ThemeMode.dark,
-          theme: appTheme,
-          darkTheme: appThemeDark,
-          onGenerateRoute: RouteManager.generateRoute,
-          builder: EasyLoading.init(),
-          initialRoute: RouteName.splashScreen,
+        child: Sizer(
+          builder: (context, orientation, deviceType) {
+            return MaterialApp(
+              themeMode: ThemeMode.light,
+              theme: appTheme,
+              darkTheme: appThemeDark,
+              onGenerateRoute: RouteManager.generateRoute,
+              builder: EasyLoading.init(),
+              initialRoute: RouteName.splashScreen,
+            );
+          },
         ),
       ),
     );

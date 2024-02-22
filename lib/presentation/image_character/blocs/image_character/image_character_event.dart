@@ -15,10 +15,22 @@ class OnClickDownload extends ImageCharacterEvent {
   OnClickDownload(this.imageCharacterModel);
 }
 
-class OnClickSetBackground extends ImageCharacterEvent {
+class OnClickSetHomeScreen extends ImageCharacterEvent {
   final ImageCharacterModel imageCharacterModel;
   final BuildContext context;
-  OnClickSetBackground(this.imageCharacterModel, this.context);
+  OnClickSetHomeScreen(this.imageCharacterModel, this.context);
+}
+
+class OnClickSetLockScreen extends ImageCharacterEvent {
+  final ImageCharacterModel imageCharacterModel;
+  final BuildContext context;
+  OnClickSetLockScreen(this.imageCharacterModel, this.context);
+}
+
+class OnClickSetBothScreen extends ImageCharacterEvent {
+  final ImageCharacterModel imageCharacterModel;
+  final BuildContext context;
+  OnClickSetBothScreen(this.imageCharacterModel, this.context);
 }
 
 class OnReloadImageCharacter extends ImageCharacterEvent {}
