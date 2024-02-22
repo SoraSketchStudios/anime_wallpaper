@@ -1,7 +1,7 @@
+import 'package:bloc/bloc.dart';
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
 part 'recent_event.dart';
@@ -11,7 +11,7 @@ part 'recent_state.dart';
 class RecentBloc extends Bloc<RecentEvent, RecentState> {
   final CharacterRepo characterRepo;
   RecentBloc(this.characterRepo) : super(const RecentInitial(null)) {
-    on<OnGetRecentCharacter>((event, emit) async {
+    on<OnGetRecentImage>((event, emit) async {
       emit(const RecentLoading(null));
       try {
         final characters = await characterRepo.getCharacters();
@@ -21,7 +21,7 @@ class RecentBloc extends Bloc<RecentEvent, RecentState> {
       }
     });
 
-    on<OnClickItemRecentCharacter>((event, emit) {
+    on<OnClickItemRecentImage>((event, emit) {
       // TODO: implement event handler
     });
   }

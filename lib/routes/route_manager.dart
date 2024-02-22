@@ -22,6 +22,7 @@ class RouteManager {
   static Widget widgetRoute(RouteSettings setting) {
     switch (setting.name) {
       case RouteName.favoriteScreen:
+        return const FavoriteScreen();
       case RouteName.settingScreen:
         return const SettingScreen();
       case RouteName.imagePreviewBothScreen:

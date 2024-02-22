@@ -1,13 +1,15 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:frame_project/presentation/image_character/screens/image_character_photo_view.dart';
+import 'package:frame_project/widgets/image_show_item_widget/image_show_item_widget.dart';
 import 'package:theme/sizes/sizes.dart';
 import 'package:theme/theme.dart';
 
 import '../../../../../widgets/character_item_widget/character_item_widget.dart';
 
-class DiscoverDoneWidget extends StatelessWidget {
+class NewDoneWidget extends StatelessWidget {
   final List<CharacterModel> characterModels;
-  const DiscoverDoneWidget({super.key, required this.characterModels});
+  const NewDoneWidget({super.key, required this.characterModels});
 
   @override
   Widget build(BuildContext context) {
@@ -15,15 +17,17 @@ class DiscoverDoneWidget extends StatelessWidget {
       keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       crossAxisCount: 3,
       childAspectRatio: 4 / 7,
+      mainAxisSpacing: 2.7.w,
+      crossAxisSpacing: 2.7.w,
       padding: EdgeInsets.only(top: 2.73.w),
-      mainAxisSpacing: AppSize.paddingS,
-      crossAxisSpacing: AppSize.paddingS,
       children: [
         ...List.generate(
           characterModels.length,
-          (index) => CharacterItemWidget(
-            characterModel: characterModels[index],
-            size: null,
+          (index) => ImageShowItemWidget(
+            imageCharacterModels: [
+              ...characterModels.map((e) => ImageCharacterModel(linkUrl: e.linkURL))
+            ],
+            index: index,
           ),
         )
       ],

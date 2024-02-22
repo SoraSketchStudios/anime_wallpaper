@@ -7,9 +7,9 @@ import 'package:theme/theme.dart';
 
 import '../../../../../widgets/character_item_widget/character_item_widget.dart';
 
-class RecentDoneWidget extends StatelessWidget {
+class TrendingDoneWidget extends StatelessWidget {
   final List<CharacterModel> characterModels;
-  const RecentDoneWidget({super.key, required this.characterModels});
+  const TrendingDoneWidget({super.key, required this.characterModels});
 
   @override
   Widget build(BuildContext context) {

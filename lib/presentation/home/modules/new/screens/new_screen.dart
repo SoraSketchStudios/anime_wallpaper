@@ -5,34 +5,34 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../widgets/empty_widget/empty_widget.dart';
 import '../../../../../widgets/error_widget/error_widget.dart';
 import '../../../../../widgets/loading_list_item_widget/loading_list_item.dart';
-import '../blocs/popular_bloc.dart';
-import '../widgets/popular_done_widget.dart';
+import '../blocs/new_bloc.dart';
+import '../widgets/new_done_widget.dart';
 
-class PopularScreen extends StatefulWidget {
-  const PopularScreen({super.key});
+class NewScreen extends StatefulWidget {
+  const NewScreen({super.key});
 
   @override
-  State<PopularScreen> createState() => _PopularScreenState();
+  State<NewScreen> createState() => _NewScreenState();
 }
 
-class _PopularScreenState extends State<PopularScreen> with AutomaticKeepAliveClientMixin {
+class _NewScreenState extends State<NewScreen> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     super.build(context);
     return BlocProvider.value(
-      value: getIt<PopularBloc>()..add(OnGetPopularCharacter()),
+      value: getIt<NewBloc>()..add(OnGetNewImage()),
       child: Builder(builder: (context) {
-        return BlocBuilder<PopularBloc, PopularState>(
+        return BlocBuilder<NewBloc, NewState>(
           builder: (_, state) {
             late Widget widgetShow;
-            if (state is PopularDone) {
+            if (state is NewDone) {
               final character = state.characters ?? [];
               if (character.isEmpty) {
                 widgetShow = const AppEmptyWidget();
               } else {
-                widgetShow = PopularDoneWidget(characterModels: state.characters ?? []);
+                widgetShow = NewDoneWidget(characterModels: state.characters ?? []);
               }
-            } else if (state is PopularError) {
+            } else if (state is NewError) {
               widgetShow = const AppErrorWidget();
             } else {
               widgetShow = const AppLoadingListItem();

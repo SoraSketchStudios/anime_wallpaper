@@ -17,11 +17,10 @@ import '../../presentation/home/blocs/item_character/item_character_bloc.dart'
     as _i10;
 import '../../presentation/home/modules/anime_girl/blocs/anime_girl_bloc.dart'
     as _i3;
-import '../../presentation/home/modules/discovers/blocs/discover_bloc.dart'
-    as _i5;
-import '../../presentation/home/modules/popular/blocs/popular_bloc.dart'
-    as _i11;
+import '../../presentation/home/modules/new/blocs/new_bloc.dart' as _i11;
 import '../../presentation/home/modules/recent/blocs/recent_bloc.dart' as _i12;
+import '../../presentation/home/modules/trending/blocs/trending_bloc.dart'
+    as _i5;
 import '../../presentation/image_character/blocs/image_character/image_character_bloc.dart'
     as _i9;
 import '../blocs/favorite_character/favorite_character_bloc.dart' as _i6;
@@ -40,8 +39,8 @@ extension GetItInjectableX on _i1.GetIt {
     );
     gh.lazySingleton<_i3.AnimeGirlBloc>(
         () => _i3.AnimeGirlBloc(gh<_i4.CharacterRepo>()));
-    gh.lazySingleton<_i5.DiscoverBloc>(
-        () => _i5.DiscoverBloc(gh<_i4.CharacterRepo>()));
+    gh.lazySingleton<_i5.TrendingBloc>(
+        () => _i5.TrendingBloc(gh<_i4.CharacterRepo>()));
     gh.singleton<_i6.FavoriteCharacterBloc>(
         _i6.FavoriteCharacterBloc(gh<_i4.FavoriteCharacterUseCase>()));
     gh.singleton<_i7.FavoriteImageBloc>(
@@ -50,8 +49,7 @@ extension GetItInjectableX on _i1.GetIt {
     gh.lazySingleton<_i9.ImageCharacterBloc>(
         () => _i9.ImageCharacterBloc(gh<_i4.CharacterRepo>()));
     gh.factory<_i10.ItemCharacterBloc>(() => _i10.ItemCharacterBloc());
-    gh.lazySingleton<_i11.PopularBloc>(
-        () => _i11.PopularBloc(gh<_i4.CharacterRepo>()));
+    gh.lazySingleton<_i11.NewBloc>(() => _i11.NewBloc(gh<_i4.CharacterRepo>()));
     gh.lazySingleton<_i12.RecentBloc>(
         () => _i12.RecentBloc(gh<_i4.CharacterRepo>()));
     return this;

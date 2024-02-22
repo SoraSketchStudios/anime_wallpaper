@@ -209,64 +209,59 @@ class ImageCharacterPhotoViewFooter extends StatelessWidget {
             ],
           ),
         ),
-        Column(
-          children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: ValueListenableBuilder(
-                  valueListenable: FavoriteImageUseCase.box.listenable(),
-                  builder: (context, box, widget) {
-                    final bool checkFavorite = getIt<FavoriteImageBloc>()
-                        .favoriteImageUseCase
-                        .checkFavorite(imageCharacterModel.linkUrl ?? "");
-                    return GestureDetector(
-                      onTap: () {
-                        !checkFavorite
-                            ? getIt<FavoriteImageBloc>()
-                                .add(OnAddFavoriteImage(imageCharacterModel.linkUrl ?? ""))
-                            : getIt<FavoriteImageBloc>().add(
-                                OnRemoveFavoriteImage(imageCharacterModel.linkUrl ?? "", context));
-                      },
-                      child: Container(
-                        padding: EdgeInsets.all(1.67.w),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: const Color(0xff191E31).withOpacity(0.53),
-                        ),
-                        child: SizedBox(
-                          height: 5.w,
-                          child: checkFavorite
-                              ? Image.asset(
-                                  AppPathAsset.iconHeartBold,
-                                  color: Colors.red,
-                                )
-                              : Image.asset(
-                                  AppPathAsset.iconHeart,
-                                  color: null,
-                                ),
-                        ),
+        ValueListenableBuilder(
+            valueListenable: FavoriteImageUseCase.box.listenable(),
+            builder: (context, box, widget) {
+              final bool checkFavorite = getIt<FavoriteImageBloc>()
+                  .favoriteImageUseCase
+                  .checkFavorite(imageCharacterModel.linkUrl ?? "");
+              return GestureDetector(
+                onTap: () {
+                  !checkFavorite
+                      ? getIt<FavoriteImageBloc>()
+                          .add(OnAddFavoriteImage(imageCharacterModel.linkUrl ?? ""))
+                      : getIt<FavoriteImageBloc>()
+                          .add(OnRemoveFavoriteImage(imageCharacterModel.linkUrl ?? "", context));
+                },
+                child: Column(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(1.67.w),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: const Color(0xff191E31).withOpacity(0.53),
                       ),
-                    );
-                  }),
-            ),
-            SizedBox(
-              height: 1.24.h,
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 1.w, horizontal: 2.w),
-              decoration: BoxDecoration(
-                  color: const Color(0xff191E31).withOpacity(0.53),
-                  borderRadius: BorderRadius.circular(100.w)),
-              child: AutoSizeText(
-                "Favorite",
-                maxLines: 1,
-                style: context.textTheme.bodySmall?.copyWith(color: Colors.white),
-              ),
-            ),
-          ],
-        ),
+                      child: SizedBox(
+                        height: 5.w,
+                        child: checkFavorite
+                            ? Image.asset(
+                                AppPathAsset.iconHeartBold,
+                                color: Colors.red,
+                              )
+                            : Image.asset(
+                                AppPathAsset.iconHeart,
+                                color: null,
+                              ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 1.24.h,
+                    ),
+                    Container(
+                      padding: EdgeInsets.symmetric(vertical: 1.w, horizontal: 2.w),
+                      decoration: BoxDecoration(
+                          color: const Color(0xff191E31).withOpacity(0.53),
+                          borderRadius: BorderRadius.circular(100.w)),
+                      child: AutoSizeText(
+                        "Favorite",
+                        maxLines: 1,
+                        style: context.textTheme.bodySmall?.copyWith(color: Colors.white),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }),
       ],
     );
   }

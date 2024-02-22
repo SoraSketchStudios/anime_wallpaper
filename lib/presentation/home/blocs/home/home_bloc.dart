@@ -18,32 +18,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       // TODO: implement event handler
     });
 
-    on<OnGetListCharacter>((event, emit) async {
-      emit(HomeLoading(state.charactersSource, state.charactersShow));
-
-      ///get data.
-      List<CharacterModel>? characters =
-          await characterRepo.getCharacters().onError((error, stackTrace) async {
-        return null;
-      }).then((value) => value);
-
-      ///handle data.
-      if (characters == null) {
-        emit(HomeError(state.charactersSource, state.charactersShow));
-      } else if (characters.isEmpty) {
-        emit(const HomeEmptyCharacter([], []));
-      } else {
-        emit(HomeDone(characters, characters));
-      }
-    });
-
     on<OnClickItemCharacter>((event, emit) {
       Navigator.pushNamed(event.context, RouteName.imageCharacterScreen,
           arguments: event.characterModel);
-    });
-
-    on<OnReloadHome>((event, emit) {
-      add(OnGetListCharacter());
     });
 
     on<OnSearchCharacter>((event, emit) async {

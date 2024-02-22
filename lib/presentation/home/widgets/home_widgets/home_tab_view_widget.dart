@@ -1,11 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:theme/theme.dart';
-import 'package:widget/widget.dart';
 
-import '../../modules/discovers/screens/discover_screen.dart';
-import '../../modules/popular/screens/popular_screen.dart';
+import '../../modules/new/screens/new_screen.dart';
 import '../../modules/recent/screens/recent_screen.dart';
+import '../../modules/trending/screens/trending_screen.dart';
 import '../home_tab_widgets/home_tab_bar_item.dart';
 import 'home_category_widget.dart';
 import 'home_slide_image_widget.dart';
@@ -107,9 +106,9 @@ class _HomeTabViewWidgetState extends State<HomeTabViewWidget> with TickerProvid
       body: TabBarView(
         controller: _controller,
         children: const [
-          DiscoverScreen(),
-          PopularScreen(),
+          TrendingScreen(),
           RecentScreen(),
+          NewScreen(),
         ],
       ),
     );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class DiscoverEmptyWidget extends StatelessWidget {
-  const DiscoverEmptyWidget({super.key});
+class TrendingEmptyWidget extends StatelessWidget {
+  const TrendingEmptyWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

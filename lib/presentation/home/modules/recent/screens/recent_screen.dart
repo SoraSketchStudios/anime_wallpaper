@@ -20,7 +20,7 @@ class _RecentScreenState extends State<RecentScreen> with AutomaticKeepAliveClie
   Widget build(BuildContext context) {
     super.build(context);
     return BlocProvider.value(
-      value: getIt<RecentBloc>()..add(OnGetRecentCharacter()),
+      value: getIt<RecentBloc>()..add(OnGetRecentImage()),
       child: Builder(builder: (context) {
         return BlocBuilder<RecentBloc, RecentState>(
           builder: (_, state) {
