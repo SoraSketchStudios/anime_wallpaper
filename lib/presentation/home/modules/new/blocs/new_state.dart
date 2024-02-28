@@ -2,23 +2,23 @@ part of 'new_bloc.dart';
 
 @immutable
 abstract class NewState {
-  final List<CharacterModel>? characters;
+  final List<ImageModel>? images;
 
-  const NewState(this.characters);
+  const NewState(this.images);
 }
 
 class NewInitial extends NewState {
-  const NewInitial(super.characters);
+  const NewInitial(super.images);
 }
 
 class NewLoading extends NewState {
-  const NewLoading(super.characters);
+  const NewLoading(super.images);
 }
 
 class NewDone extends NewState {
-  const NewDone(super.characters);
+  const NewDone(super.images);
 }
 
 class NewError extends NewState {
-  const NewError(super.characters);
+  const NewError(super.images);
 }

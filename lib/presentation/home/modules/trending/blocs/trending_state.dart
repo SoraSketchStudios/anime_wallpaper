@@ -2,23 +2,23 @@ part of 'trending_bloc.dart';
 
 @immutable
 abstract class TrendingState {
-  final List<CharacterModel>? characters;
+  final List<ImageModel>? images;
 
-  const TrendingState(this.characters);
+  const TrendingState(this.images);
 }
 
 class TrendingInitial extends TrendingState {
-  const TrendingInitial(super.characters);
+  const TrendingInitial(super.images);
 }
 
 class TrendingLoading extends TrendingState {
-  const TrendingLoading(super.characters);
+  const TrendingLoading(super.images);
 }
 
 class TrendingDone extends TrendingState {
-  const TrendingDone(super.characters);
+  const TrendingDone(super.images);
 }
 
 class TrendingError extends TrendingState {
-  const TrendingError(super.characters);
+  const TrendingError(super.images);
 }

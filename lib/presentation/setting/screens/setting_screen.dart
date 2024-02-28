@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frame_project/routes/route_names.dart';
 import 'package:theme/theme.dart';
 
 import '../widgets/setting_item_widget.dart';
@@ -42,30 +43,34 @@ class SettingScreen extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  SettingItemWidget(
-                    iconPath: AppPathAsset.iconSend,
-                    title: "Invite a friend",
-                    onTap: () {},
-                  ),
+                  // SettingItemWidget(
+                  //   iconPath: AppPathAsset.iconSend,
+                  //   title: "Invite a friend",
+                  //   onTap: () {},
+                  // ),
                   SettingItemWidget(
                     iconPath: AppPathAsset.iconStar,
                     title: "Rate this app",
                     onTap: () {},
                   ),
-                  SettingItemWidget(
-                    iconPath: AppPathAsset.iconMess,
-                    title: "Feedback & bugs",
-                    onTap: () {},
-                  ),
+                  // SettingItemWidget(
+                  //   iconPath: AppPathAsset.iconMess,
+                  //   title: "Feedback & bugs",
+                  //   onTap: () {},
+                  // ),
                   SettingItemWidget(
                     iconPath: AppPathAsset.iconTerm,
                     title: "Terms & Conditions",
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, RouteName.termOfUseScreen);
+                    },
                   ),
                   SettingItemWidget(
                     iconPath: AppPathAsset.iconPrivacy,
                     title: "Privacy Policy",
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, RouteName.privacyScreen);
+                    },
                     isEnd: true,
                   ),
                 ],

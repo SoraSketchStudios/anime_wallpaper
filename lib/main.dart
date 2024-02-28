@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frame_project/core/blocs/favorite_character/favorite_character_bloc.dart';
+import 'package:frame_project/shared_preferences/shared_preferences.dart';
 import 'package:theme/theme.dart';
 import 'package:widget/widget.dart';
 import 'core/blocs/favorite_image/favorite_image_bloc.dart';
@@ -27,6 +28,9 @@ Future<void> main() async {
   await registerAdapter();
   await opeHive();
 
+  /// config Shared Preferences.
+  SharePreferenceController.initSharePreference();
+
   runApp(const Main());
 }
 
@@ -42,7 +46,7 @@ class Main extends StatelessWidget {
         child: Sizer(
           builder: (context, orientation, deviceType) {
             return MaterialApp(
-              themeMode: ThemeMode.light,
+              themeMode: ThemeMode.dark,
               theme: appTheme,
               darkTheme: appThemeDark,
               onGenerateRoute: RouteManager.generateRoute,

@@ -10,27 +10,31 @@ class OnClickItemImage extends ImageCharacterEvent {
 }
 
 class OnClickDownload extends ImageCharacterEvent {
-  final ImageCharacterModel imageCharacterModel;
+  final ImageModel imageCharacterModel;
 
   OnClickDownload(this.imageCharacterModel);
 }
 
 class OnClickSetHomeScreen extends ImageCharacterEvent {
-  final ImageCharacterModel imageCharacterModel;
+  final ImageModel imageCharacterModel;
   final BuildContext context;
-  OnClickSetHomeScreen(this.imageCharacterModel, this.context);
+  final Function onDone;
+  OnClickSetHomeScreen(this.imageCharacterModel, this.context, this.onDone);
 }
 
 class OnClickSetLockScreen extends ImageCharacterEvent {
-  final ImageCharacterModel imageCharacterModel;
+  final ImageModel imageCharacterModel;
   final BuildContext context;
-  OnClickSetLockScreen(this.imageCharacterModel, this.context);
+  final Function onDone;
+  OnClickSetLockScreen(this.imageCharacterModel, this.context, this.onDone);
 }
 
 class OnClickSetBothScreen extends ImageCharacterEvent {
-  final ImageCharacterModel imageCharacterModel;
+  final ImageModel imageCharacterModel;
   final BuildContext context;
-  OnClickSetBothScreen(this.imageCharacterModel, this.context);
+  final Function onDone;
+
+  OnClickSetBothScreen(this.imageCharacterModel, this.context, this.onDone);
 }
 
 class OnReloadImageCharacter extends ImageCharacterEvent {}

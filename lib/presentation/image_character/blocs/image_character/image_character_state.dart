@@ -3,7 +3,7 @@ part of 'image_character_bloc.dart';
 @immutable
 abstract class ImageCharacterState {
   final CharacterModel? characterModel;
-  final List<ImageCharacterModel>? imageCharacterModels;
+  final List<ImageModel>? imageCharacterModels;
 
   const ImageCharacterState(this.characterModel, this.imageCharacterModels);
 }

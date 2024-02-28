@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frame_project/presentation/home/blocs/home/home_bloc.dart';
@@ -8,6 +9,9 @@ import 'package:theme/image_export.dart';
 import 'package:theme/sizes/sizes.dart';
 import 'package:theme/theme.dart';
 import 'package:widget/text_field/text_field_widgets.dart';
+
+import '../../../search/blocs/search_bloc.dart';
+import '../../../search/screens/search_screen.dart';
 
 class HomeSearchWidget extends StatefulWidget {
   const HomeSearchWidget({super.key});
@@ -39,14 +43,20 @@ class _HomeSearchWidgetState extends State<HomeSearchWidget> {
         Expanded(
           child: GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, RouteName.searchScreen);
+              showDialog(
+                  context: context,
+                  useSafeArea: false,
+                  builder: (_) => BlocProvider.value(
+                        value: getIt<SearchBloc>()..add(OnReset()),
+                        child: const SearchScreen(),
+                      ));
             },
-            child: IgnorePointer(
+            child: Hero(
+              tag: "search",
               child: AppTextFieldWidget(
                 onChange: (string) {
                   _onSearchChanged(string, context);
                 },
-                key: keyText,
                 hintText: "Find Wallpaper by character name..",
               ),
             ),

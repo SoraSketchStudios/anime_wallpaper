@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frame_project/routes/route_names.dart';
+import 'package:frame_project/shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -15,9 +16,11 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
   }
 
-  void navigateApp() {
-    Future.delayed(const Duration(seconds: 1))
-        .then((value) => Navigator.pushNamed(context, RouteName.mainScreen));
+  Future<void> navigateApp() async {
+    /// check first time.
+    final bool isFirstTime = SharePreferenceController.getIsFirst();
+    Future.delayed(const Duration(seconds: 1)).then((value) =>
+        Navigator.pushNamed(context, isFirstTime ? RouteName.introScreen : RouteName.mainScreen));
   }
 
   @override

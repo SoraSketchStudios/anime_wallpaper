@@ -9,13 +9,13 @@ part 'recent_state.dart';
 
 @lazySingleton
 class RecentBloc extends Bloc<RecentEvent, RecentState> {
-  final CharacterRepo characterRepo;
-  RecentBloc(this.characterRepo) : super(const RecentInitial(null)) {
+  final ImageUseCase imageUseCase;
+  RecentBloc(this.imageUseCase) : super(const RecentInitial(null)) {
     on<OnGetRecentImage>((event, emit) async {
       emit(const RecentLoading(null));
       try {
-        final characters = await characterRepo.getCharacters();
-        emit(RecentDone(characters));
+        final images = await imageUseCase.getRecentImage();
+        emit(RecentDone(images));
       } catch (e) {
         emit(const RecentError(null));
       }

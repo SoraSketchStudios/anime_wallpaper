@@ -9,13 +9,13 @@ part 'new_state.dart';
 
 @lazySingleton
 class NewBloc extends Bloc<NewEvent, NewState> {
-  final CharacterRepo characterRepo;
-  NewBloc(this.characterRepo) : super(const NewInitial(null)) {
+  final ImageUseCase imageUseCase;
+  NewBloc(this.imageUseCase) : super(const NewInitial(null)) {
     on<OnGetNewImage>((event, emit) async {
       emit(const NewLoading(null));
       try {
-        final characters = await characterRepo.getCharacters();
-        emit(NewDone(characters));
+        final images = await imageUseCase.getNewImage();
+        emit(NewDone(images));
       } catch (e) {
         emit(const NewError(null));
       }

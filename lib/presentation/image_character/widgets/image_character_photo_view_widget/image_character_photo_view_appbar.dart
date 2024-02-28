@@ -5,7 +5,7 @@ import 'package:theme/sizes/sizes.dart';
 import 'package:theme/theme.dart';
 
 class ImageCharacterPhotoViewAppbar extends StatelessWidget {
-  final List<ImageCharacterModel> imageCharacterModels;
+  final List<ImageModel> imageCharacterModels;
   const ImageCharacterPhotoViewAppbar({super.key, required this.imageCharacterModels});
 
   @override
@@ -14,6 +14,7 @@ class ImageCharacterPhotoViewAppbar extends StatelessWidget {
       child: SizedBox(
         height: AppSize.appbarHeight,
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconButton(
               onPressed: () {
@@ -22,6 +23,16 @@ class ImageCharacterPhotoViewAppbar extends StatelessWidget {
               icon: Image.asset(
                 AppPathAsset.iconBack,
                 width: 7.22.w,
+                color: Colors.white,
+              ),
+            ),
+            IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Image.asset(
+                AppPathAsset.iconExpand,
+                width: 5.w,
                 color: Colors.white,
               ),
             )

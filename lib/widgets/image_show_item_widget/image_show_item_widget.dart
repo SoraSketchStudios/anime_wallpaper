@@ -9,7 +9,7 @@ import '../../../../core/blocs/favorite_image/favorite_image_bloc.dart';
 import '../../presentation/image_character/screens/image_character_photo_view.dart';
 
 class ImageShowItemWidget extends StatelessWidget {
-  final List<ImageCharacterModel> imageCharacterModels;
+  final List<ImageModel> imageCharacterModels;
   final int index;
   const ImageShowItemWidget({super.key, required this.imageCharacterModels, required this.index});
 

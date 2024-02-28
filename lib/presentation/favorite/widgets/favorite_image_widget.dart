@@ -36,7 +36,7 @@ class FavoriteImageWidget extends StatelessWidget {
                     (index) => ImageShowItemWidget(
                           imageCharacterModels: [
                             ...state.listFavoriteImage
-                                .map((e) => ImageCharacterModel(linkUrl: e.linkImage))
+                                .map((e) => ImageModel(linkUrl: e.linkImage))
                           ],
                           index: index,
                         ))

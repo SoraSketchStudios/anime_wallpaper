@@ -75,6 +75,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   build_runner: ^2.4.7
   injectable_generator: ^2.4.1
+  shared_preferences: ^2.2.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -87,16 +88,13 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   fonts:
-    - family: Inter
+    - family: Bebas Neue
       fonts:
-        - asset: assets/fonts/Inter/static/Inter-Regular.ttf
+        - asset: assets/fonts/Bebas_Neue/BebasNeue-Regular.ttf
           style: italic
-    - family: Kalam
+    - family: Montserrat
       fonts:
-        - asset: assets/fonts/Kalam/Kalam-Regular.ttf
-    - family: Poppins
-      fonts:
-        - asset: assets/fonts/Poppins/Poppins-Regular.ttf
+        - asset: assets/fonts/Montserrat/static/Montserrat-Regular.ttf
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -9,9 +9,12 @@ final appTheme = ThemeData(
 );
 
 final appThemeDark = ThemeData(
-  fontFamily: "Poppins",
+  fontFamily: "Montserrat",
   useMaterial3: true,
-  colorScheme: const ColorScheme.dark(),
+  colorScheme: ThemeData.dark().colorScheme.copyWith(
+        background: const Color(0xff18181B),
+        primary: const Color(0xff6C1066),
+      ),
   appBarTheme: const AppBarTheme(
     backgroundColor: Colors.transparent,
     surfaceTintColor: Colors.transparent,

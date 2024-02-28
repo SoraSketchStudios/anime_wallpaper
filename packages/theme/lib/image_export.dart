@@ -3,7 +3,7 @@ class AppPathAsset {
   static const _pathImageApp = "packages/theme/assets/images";
   static const _pathIconApp = "packages/theme/assets/icons";
 
-  /// icon
+  /// icons
   static const iconSearch = "$_pathIconApp/icon_search.png";
   static const iconNotification = "$_pathIconApp/icon_notification.png";
   static const iconNew = "$_pathIconApp/icon_new.png";
@@ -28,4 +28,14 @@ class AppPathAsset {
   static const iconSend = "$_pathIconApp/icon_send.png";
   static const iconStar = "$_pathIconApp/icon_star.png";
   static const iconTerm = "$_pathIconApp/icon_term.png";
+  static const iconExpand = "$_pathIconApp/icon_expand.png";
+
+  static const iconTabIntro = "$_pathIconApp/icon_tab_intro.png";
+  static const iconTabIntroHighlight = "$_pathIconApp/icon_tab_intro_highlight.png";
+
+  /// images
+  static const imageIntro1 = "$_pathImageApp/image_intro_1.png";
+  static const imageIntro2 = "$_pathImageApp/image_intro_2.png";
+  static const imageIntro3 = "$_pathImageApp/image_intro_3.png";
+  static const imageIntro4 = "$_pathImageApp/image_intro_4.png";
 }

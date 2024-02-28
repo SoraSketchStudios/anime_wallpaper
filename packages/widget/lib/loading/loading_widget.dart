@@ -5,10 +5,17 @@ class AppLoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: const Center(
-        child: CircularProgressIndicator(
-          value: null,
+    return const SingleChildScrollView(
+      child: SizedBox(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Center(
+              child: CircularProgressIndicator(
+                value: null,
+              ),
+            ),
+          ],
         ),
       ),
     );

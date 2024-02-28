@@ -5,7 +5,7 @@ import 'package:theme/sizes/sizes.dart';
 import '../../../../widgets/image_show_item_widget/image_show_item_widget.dart';
 
 class ImageCharacterDoneWidget extends StatelessWidget {
-  final List<ImageCharacterModel> imageCharacterModels;
+  final List<ImageModel> imageCharacterModels;
   const ImageCharacterDoneWidget({super.key, required this.imageCharacterModels});
 
   @override

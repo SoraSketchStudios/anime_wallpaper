@@ -26,11 +26,11 @@ class _TrendingScreenState extends State<TrendingScreen> with AutomaticKeepAlive
           builder: (_, state) {
             late Widget widgetShow;
             if (state is TrendingDone) {
-              final character = state.characters ?? [];
+              final character = state.images ?? [];
               if (character.isEmpty) {
                 widgetShow = const TrendingEmptyWidget();
               } else {
-                widgetShow = TrendingDoneWidget(characterModels: state.characters ?? []);
+                widgetShow = TrendingDoneWidget(imageModels: state.images ?? []);
               }
             } else if (state is TrendingError) {
               widgetShow = const AppErrorWidget();

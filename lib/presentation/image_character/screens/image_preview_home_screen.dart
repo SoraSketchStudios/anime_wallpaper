@@ -8,10 +8,16 @@ import 'package:widget/image_builder/image_builder_widget.dart';
 
 import '../blocs/image_character/image_character_bloc.dart';
 
-class ImagePreviewHomeScreen extends StatelessWidget {
-  final ImageCharacterModel imageCharacterModel;
+class ImagePreviewHomeScreen extends StatefulWidget {
+  final ImageModel imageCharacterModel;
   const ImagePreviewHomeScreen({super.key, required this.imageCharacterModel});
 
+  @override
+  State<ImagePreviewHomeScreen> createState() => _ImagePreviewHomeScreenState();
+}
+
+class _ImagePreviewHomeScreenState extends State<ImagePreviewHomeScreen> {
+  final ValueNotifier<bool> isDone = ValueNotifier(false);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +31,7 @@ class ImagePreviewHomeScreen extends StatelessWidget {
                 SizedBox(
                   height: MediaQuery.of(context).size.height,
                   child: CachedNetworkImage(
-                    imageUrl: imageCharacterModel.linkUrl ?? "",
+                    imageUrl: widget.imageCharacterModel.linkUrl ?? "",
                     filterQuality: FilterQuality.low,
                     fit: BoxFit.cover,
                   ),
@@ -64,7 +70,7 @@ class ImagePreviewHomeScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: EdgeInsets.all(6.w),
+                          padding: EdgeInsets.only(left: 6.w, right: 6.w, top: 6.w),
                           child: Stack(
                             children: [
                               Container(
@@ -80,7 +86,7 @@ class ImagePreviewHomeScreen extends StatelessWidget {
                                             offset: const Offset(1, 3))
                                       ]),
                                   child: AppImageBuilderWidget(
-                                    linkImage: imageCharacterModel.linkUrl ?? "",
+                                    linkImage: widget.imageCharacterModel.linkUrl ?? "",
                                   )),
                               Positioned(
                                   top: 3.w,
@@ -131,6 +137,34 @@ class ImagePreviewHomeScreen extends StatelessWidget {
                       ],
                     ),
                   ),
+                  AnimatedBuilder(
+                    animation: isDone,
+                    builder: (_, __) => isDone.value
+                        ? Container(
+                            margin: EdgeInsets.all(2.w),
+                            padding: EdgeInsets.symmetric(vertical: 2.08.w, horizontal: 2.7.w),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(2.w),
+                              color: Colors.white,
+                            ),
+                            child: Text(
+                              "Wallpaper is applied",
+                              style: context.textTheme.bodySmall,
+                            ),
+                          )
+                        : Container(
+                            margin: EdgeInsets.all(2.w),
+                            padding: EdgeInsets.symmetric(vertical: 2.08.w, horizontal: 2.7.w),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(2.w),
+                              color: Colors.transparent,
+                            ),
+                            child: Text(
+                              "",
+                              style: context.textTheme.bodySmall,
+                            ),
+                          ),
+                  ),
                   SizedBox(
                     width: 80.w,
                     child: ElevatedButton(
@@ -139,7 +173,9 @@ class ImagePreviewHomeScreen extends StatelessWidget {
                         ),
                         onPressed: () {
                           getIt<ImageCharacterBloc>()
-                              .add(OnClickSetHomeScreen(imageCharacterModel, context));
+                              .add(OnClickSetHomeScreen(widget.imageCharacterModel, context, () {
+                            isDone.value = true;
+                          }));
                         },
                         child: Text(
                           "Set on Home screen",

@@ -26,11 +26,11 @@ class _RecentScreenState extends State<RecentScreen> with AutomaticKeepAliveClie
           builder: (_, state) {
             late Widget widgetShow;
             if (state is RecentDone) {
-              final character = state.characters ?? [];
+              final character = state.images ?? [];
               if (character.isEmpty) {
                 widgetShow = const AppEmptyWidget();
               } else {
-                widgetShow = RecentDoneWidget(characterModels: state.characters ?? []);
+                widgetShow = RecentDoneWidget(imageModels: state.images ?? []);
               }
             } else if (state is RecentError) {
               widgetShow = const AppErrorWidget();

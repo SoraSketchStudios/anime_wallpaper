@@ -2,13 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:theme/theme.dart';
 
 class AppTextFieldWidget extends StatefulWidget {
+  final bool enabled;
   final TextEditingController? controller;
   final String? hintText;
   final FocusNode? focusNode;
   final TextStyle? style;
+  final Function? onDone;
   final Function(String)? onChange;
   const AppTextFieldWidget(
-      {super.key, this.controller, this.focusNode, this.hintText, this.style, this.onChange});
+      {super.key,
+      this.controller,
+      this.focusNode,
+      this.hintText,
+      this.style,
+      this.onChange,
+      this.enabled = false,
+       this.onDone});
 
   @override
   State<AppTextFieldWidget> createState() => AppTextFieldWidgetState();
@@ -40,7 +49,11 @@ class AppTextFieldWidgetState extends State<AppTextFieldWidget> {
           children: [
             Expanded(
               child: TextFormField(
+                enabled: widget.enabled,
                 scrollPadding: EdgeInsets.zero,
+                onEditingComplete: () {
+                  widget.onDone?.call();
+                },
                 focusNode: node,
                 onChanged: widget.onChange,
                 maxLines: 1,

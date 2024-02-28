@@ -26,11 +26,11 @@ class _NewScreenState extends State<NewScreen> with AutomaticKeepAliveClientMixi
           builder: (_, state) {
             late Widget widgetShow;
             if (state is NewDone) {
-              final character = state.characters ?? [];
+              final character = state.images ?? [];
               if (character.isEmpty) {
                 widgetShow = const AppEmptyWidget();
               } else {
-                widgetShow = NewDoneWidget(characterModels: state.characters ?? []);
+                widgetShow = NewDoneWidget(imageModels: state.images ?? []);
               }
             } else if (state is NewError) {
               widgetShow = const AppErrorWidget();

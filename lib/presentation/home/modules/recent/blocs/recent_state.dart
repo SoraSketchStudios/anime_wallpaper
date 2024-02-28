@@ -2,9 +2,9 @@ part of 'recent_bloc.dart';
 
 @immutable
 abstract class RecentState {
-  final List<CharacterModel>? characters;
+  final List<ImageModel>? images;
 
-  const RecentState(this.characters);
+  const RecentState(this.images);
 }
 
 class RecentInitial extends RecentState {

@@ -127,12 +127,6 @@ class _ImageCharacterPhotoViewState extends State<ImageCharacterPhotoView> {
                   ),
                 ),
               ),
-              // AnimatedBuilder(
-              //   animation: index,
-              //   builder: (_, __) => ImageCharacterPhotoViewFooter(
-              //     imageCharacterModel: widget.imageCharacterModels.imageCharacters[index.value],
-              //   ),
-              // ),
             ],
           ),
         ),
@@ -142,7 +136,7 @@ class _ImageCharacterPhotoViewState extends State<ImageCharacterPhotoView> {
 }
 
 class ImageCharacterModels {
-  final List<ImageCharacterModel> imageCharacters;
+  final List<ImageModel> imageCharacters;
   final int index;
   ImageCharacterModels(this.imageCharacters, this.index);
 }

@@ -17,8 +17,9 @@ import '../hive_server/controller_imp/favorite_character_controller_imp.dart'
     as _i6;
 import '../hive_server/controller_imp/favorite_image_controller_imp.dart'
     as _i7;
-import '../service_server/repo_imp/character_repo_imp.dart' as _i4;
-import '../shared_preferences/shared_preference.dart' as _i8;
+import '../service_server/usecase_imp/character_repo_imp.dart' as _i4;
+import '../service_server/usecase_imp/image_usecase_imp.dart' as _i8;
+import '../shared_preferences/shared_preference.dart' as _i9;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -37,7 +38,8 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i6.FavoriteCharacterControllerImp());
     gh.factory<_i3.FavoriteImageUseCase>(
         () => _i7.FavoriteImageControllerImp());
-    gh.singleton<_i8.SharedPreferenceApp>(_i8.SharedPreferenceApp());
+    gh.factory<_i3.ImageUseCase>(() => _i8.ImageUseCaseImp(gh<_i5.DioInfo>()));
+    gh.singleton<_i9.SharedPreferenceApp>(_i9.SharedPreferenceApp());
     return this;
   }
 }

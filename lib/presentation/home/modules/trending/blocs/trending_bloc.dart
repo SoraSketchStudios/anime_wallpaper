@@ -9,13 +9,13 @@ part 'trending_state.dart';
 
 @lazySingleton
 class TrendingBloc extends Bloc<TrendingEvent, TrendingState> {
-  final CharacterRepo characterRepo;
-  TrendingBloc(this.characterRepo) : super(const TrendingInitial(null)) {
+  final ImageUseCase imageUseCase;
+  TrendingBloc(this.imageUseCase) : super(const TrendingInitial(null)) {
     on<OnGetTrendingImage>((event, emit) async {
       emit(const TrendingLoading(null));
       try {
-        final characters = await characterRepo.getCharacters();
-        emit(TrendingDone(characters));
+        final images = await imageUseCase.getTrendingImage();
+        emit(TrendingDone(images));
       } catch (e) {
         emit(const TrendingError(null));
       }

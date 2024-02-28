@@ -10,4 +10,7 @@ class RouteName {
   static const String imagePreviewLockScreen = "/imagePreviewLockScreen";
   static const String settingScreen = "/settingScreen";
   static const String favoriteScreen = "/favoriteScreen";
+  static const String termOfUseScreen = "/termOfUseScreen";
+  static const String privacyScreen = "/privacyScreen";
+  static const String introScreen = "/introScreen";
 }

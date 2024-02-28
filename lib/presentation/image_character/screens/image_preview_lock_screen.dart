@@ -8,10 +8,16 @@ import 'package:widget/image_builder/image_builder_widget.dart';
 
 import '../blocs/image_character/image_character_bloc.dart';
 
-class ImagePreviewLockScreen extends StatelessWidget {
-  final ImageCharacterModel imageCharacterModel;
+class ImagePreviewLockScreen extends StatefulWidget {
+  final ImageModel imageCharacterModel;
   const ImagePreviewLockScreen({super.key, required this.imageCharacterModel});
 
+  @override
+  State<ImagePreviewLockScreen> createState() => _ImagePreviewLockScreenState();
+}
+
+class _ImagePreviewLockScreenState extends State<ImagePreviewLockScreen> {
+  ValueNotifier<bool> isDone = ValueNotifier(false);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +31,7 @@ class ImagePreviewLockScreen extends StatelessWidget {
                 SizedBox(
                   height: MediaQuery.of(context).size.height,
                   child: CachedNetworkImage(
-                    imageUrl: imageCharacterModel.linkUrl ?? "",
+                    imageUrl: widget.imageCharacterModel.linkUrl ?? "",
                     filterQuality: FilterQuality.low,
                     fit: BoxFit.cover,
                   ),
@@ -64,7 +70,7 @@ class ImagePreviewLockScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: EdgeInsets.all(6.w),
+                        padding: EdgeInsets.only(left: 6.w, right: 6.w, top: 6.w),
                         child: Stack(
                           children: [
                             Container(
@@ -80,7 +86,7 @@ class ImagePreviewLockScreen extends StatelessWidget {
                                           offset: const Offset(1, 3))
                                     ]),
                                 child: AppImageBuilderWidget(
-                                  linkImage: imageCharacterModel.linkUrl ?? "",
+                                  linkImage: widget.imageCharacterModel.linkUrl ?? "",
                                 )),
                             Positioned(
                                 top: 10.41.w,
@@ -107,6 +113,34 @@ class ImagePreviewLockScreen extends StatelessWidget {
                       ),
                     ],
                   )),
+                  AnimatedBuilder(
+                    animation: isDone,
+                    builder: (_, __) => isDone.value
+                        ? Container(
+                            margin: EdgeInsets.all(2.w),
+                            padding: EdgeInsets.symmetric(vertical: 2.08.w, horizontal: 2.7.w),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(2.w),
+                              color: Colors.white,
+                            ),
+                            child: Text(
+                              "Wallpaper is applied",
+                              style: context.textTheme.bodySmall,
+                            ),
+                          )
+                        : Container(
+                            margin: EdgeInsets.all(2.w),
+                            padding: EdgeInsets.symmetric(vertical: 2.08.w, horizontal: 2.7.w),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(2.w),
+                              color: Colors.transparent,
+                            ),
+                            child: Text(
+                              "",
+                              style: context.textTheme.bodySmall,
+                            ),
+                          ),
+                  ),
                   SizedBox(
                     width: 80.w,
                     child: ElevatedButton(
@@ -114,8 +148,15 @@ class ImagePreviewLockScreen extends StatelessWidget {
                           backgroundColor: const Color(0xff191E31),
                         ),
                         onPressed: () {
-                          getIt<ImageCharacterBloc>()
-                              .add(OnClickSetLockScreen(imageCharacterModel, context));
+                          getIt<ImageCharacterBloc>().add(
+                            OnClickSetLockScreen(
+                              widget.imageCharacterModel,
+                              context,
+                              () {
+                                isDone.value = true;
+                              },
+                            ),
+                          );
                         },
                         child: Text(
                           "Set on Lock screen",

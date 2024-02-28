@@ -8,8 +8,8 @@ import 'package:theme/theme.dart';
 import '../../../../../widgets/character_item_widget/character_item_widget.dart';
 
 class NewDoneWidget extends StatelessWidget {
-  final List<CharacterModel> characterModels;
-  const NewDoneWidget({super.key, required this.characterModels});
+  final List<ImageModel> imageModels;
+  const NewDoneWidget({super.key, required this.imageModels});
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +22,10 @@ class NewDoneWidget extends StatelessWidget {
       padding: EdgeInsets.only(top: 2.73.w),
       children: [
         ...List.generate(
-          characterModels.length,
+          imageModels.length,
           (index) => ImageShowItemWidget(
             imageCharacterModels: [
-              ...characterModels.map((e) => ImageCharacterModel(linkUrl: e.linkURL))
+              ...imageModels.map((e) => ImageModel(linkUrl: e.linkUrl))
             ],
             index: index,
           ),

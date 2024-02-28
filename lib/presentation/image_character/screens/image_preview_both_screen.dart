@@ -8,10 +8,16 @@ import 'package:theme/theme.dart';
 import 'package:widget/image_builder/image_builder_widget.dart';
 import 'package:widget/widget.dart';
 
-class ImagePreviewBothScreen extends StatelessWidget {
-  final ImageCharacterModel imageCharacterModel;
+class ImagePreviewBothScreen extends StatefulWidget {
+  final ImageModel imageCharacterModel;
   const ImagePreviewBothScreen({super.key, required this.imageCharacterModel});
 
+  @override
+  State<ImagePreviewBothScreen> createState() => _ImagePreviewBothScreenState();
+}
+
+class _ImagePreviewBothScreenState extends State<ImagePreviewBothScreen> {
+  final ValueNotifier<bool> isDone = ValueNotifier(false);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +31,7 @@ class ImagePreviewBothScreen extends StatelessWidget {
                 SizedBox(
                   height: MediaQuery.of(context).size.height,
                   child: CachedNetworkImage(
-                    imageUrl: imageCharacterModel.linkUrl ?? "",
+                    imageUrl: widget.imageCharacterModel.linkUrl ?? "",
                     filterQuality: FilterQuality.low,
                     fit: BoxFit.cover,
                   ),
@@ -83,7 +89,7 @@ class ImagePreviewBothScreen extends StatelessWidget {
                                               offset: const Offset(1, 3))
                                         ]),
                                     child: AppImageBuilderWidget(
-                                      linkImage: imageCharacterModel.linkUrl ?? "",
+                                      linkImage: widget.imageCharacterModel.linkUrl ?? "",
                                     )),
                                 Positioned(
                                     top: 10.41.w,
@@ -130,7 +136,7 @@ class ImagePreviewBothScreen extends StatelessWidget {
                                               offset: const Offset(1, 3))
                                         ]),
                                     child: AppImageBuilderWidget(
-                                      linkImage: imageCharacterModel.linkUrl ?? "",
+                                      linkImage: widget.imageCharacterModel.linkUrl ?? "",
                                     )),
                                 Positioned(
                                     top: 3.w,
@@ -183,6 +189,34 @@ class ImagePreviewBothScreen extends StatelessWidget {
                       ),
                     ],
                   )),
+                  AnimatedBuilder(
+                    animation: isDone,
+                    builder: (_, __) => isDone.value
+                        ? Container(
+                      margin: EdgeInsets.all(2.w),
+                      padding: EdgeInsets.symmetric(vertical: 2.08.w, horizontal: 2.7.w),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(2.w),
+                        color: Colors.white,
+                      ),
+                      child: Text(
+                        "Wallpaper is applied",
+                        style: context.textTheme.bodySmall,
+                      ),
+                    )
+                        : Container(
+                      margin: EdgeInsets.all(2.w),
+                      padding: EdgeInsets.symmetric(vertical: 2.08.w, horizontal: 2.7.w),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(2.w),
+                        color: Colors.transparent,
+                      ),
+                      child: Text(
+                        "",
+                        style: context.textTheme.bodySmall,
+                      ),
+                    ),
+                  ),
                   SizedBox(
                     width: 80.w,
                     child: ElevatedButton(
@@ -191,7 +225,9 @@ class ImagePreviewBothScreen extends StatelessWidget {
                         ),
                         onPressed: () {
                           getIt<ImageCharacterBloc>()
-                              .add(OnClickSetBothScreen(imageCharacterModel, context));
+                              .add(OnClickSetBothScreen(widget.imageCharacterModel, context, () {
+                            isDone.value = true;
+                          }));
                         },
                         child: Text(
                           "Set on Lock and Home screens",

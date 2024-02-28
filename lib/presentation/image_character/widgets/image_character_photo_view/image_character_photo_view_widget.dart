@@ -5,7 +5,7 @@ import 'package:photo_view/photo_view.dart';
 import 'package:theme/theme.dart';
 
 class ImageCharacterPhotoViewWidget extends StatelessWidget {
-  final ImageCharacterModel imageCharacterModel;
+  final ImageModel imageCharacterModel;
   const ImageCharacterPhotoViewWidget({super.key, required this.imageCharacterModel});
 
   @override

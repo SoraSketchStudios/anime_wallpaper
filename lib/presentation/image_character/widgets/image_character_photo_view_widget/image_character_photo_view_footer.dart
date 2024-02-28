@@ -5,11 +5,10 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:frame_project/routes/route_names.dart';
 import 'package:theme/theme.dart';
 import 'package:widget/widget.dart';
-
 import '../../../../core/blocs/favorite_image/favorite_image_bloc.dart';
 
 class ImageCharacterPhotoViewFooter extends StatelessWidget {
-  final ImageCharacterModel imageCharacterModel;
+  final ImageModel imageCharacterModel;
   const ImageCharacterPhotoViewFooter({super.key, required this.imageCharacterModel});
 
   @override
